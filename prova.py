@@ -1,5 +1,6 @@
 import itertools
 import operator
+from time import perf_counter_ns
 
 from sympy.abc import *
 from sympy.core.symbol import Symbol
@@ -10,86 +11,49 @@ from sympy import *
 import sympy
 from sympy.parsing.sympy_parser import split_symbols
 
-f, t = symbols('False, True')
+from formulas import *
 
 
-def split_independent(cnf_formula):
-    atoms = cnf_formula.atoms() - {f, t}
-    clauses = list(cnf_formula.args)
-    components = []
-    "POP first atom, save all formulas that present it, then iteratively do the same for all new atoms inserted"
-    "When this first step stop in the first element of the list append the and of all clauses"
-    "Continue popping and checking until all atoms are checked"
-    while atoms:
-        atom = atoms.pop()
-        to_check = {atom}
-        conj = And()
+def replace(ddnnf):
+    str_ddnnf = ddnnf.__str__()
+    str_ddnnf = str_ddnnf.replace("&","*")
+    str_ddnnf = str_ddnnf.replace("|","+")
+    str_ddnnf = str_ddnnf.replace("~","")
+    str_ddnnf = str_ddnnf.replace(f.__str__(), "0")
 
-        while to_check:
-            check_atom = to_check.pop()
-            remaining = []
-            for clause in clauses:
-                if check_atom in clause.atoms():
-                    conj = And(conj, clause)
-                    to_check = to_check.union(conj.atoms()) - {f, t}
-                    atoms = atoms.difference(conj.atoms())
-                else:
-                    remaining.append(clause)
-            clauses = remaining
+    for atom in ddnnf.atoms() - {f}:
+        str_ddnnf = str_ddnnf.replace(atom.__str__(), "1")
 
-        components.append(conj)
-    return components
+    return str_ddnnf
 
 
-def most_frequent_atom(cnf_formula):
-    most_frequent = None
-    count = 0
-    for atom in cnf_formula.atoms():
-        occurences = cnf_formula.count(atom)
-        if atom != f and atom != t and occurences > count:
-            most_frequent = atom
-            count = occurences
-    return most_frequent
-
-
-def shannon_exp(cnf_formula, atom):
-    f0 = And(~atom, cnf_formula.replace(~atom, t).replace(atom, f))
-    f1 = And(atom, cnf_formula.replace(~atom, f).replace(atom, t))
-
-    return Or(f0, f1)
-
-
-def reduce(cnf_formula):
-    reduced = And()
-    for clause in cnf_formula.args:
-        if not clause.is_Atom:
-            clause = clause.replace(f, false)
-        reduced = And(reduced, clause)
-    return reduced
-
-
-def to_d_dnnf(cnf_formula, reduction=True):
-    components = split_independent(cnf_formula)
-    result = And()
-    for component in components:
-        if component.is_Atom or len(component.atoms() - {f, t}) == 1:
-            result = And(result, component)
+def count_models_from_ddnnf(ddnnf):
+    """WRONG because the ddnnf could start with a AND or with a OR?"""
+    count = 1
+    for clause in ddnnf.args:
+        if clause.is_Atom:
+            if clause == f:
+                count *= 0
         else:
-            atom = most_frequent_atom(component)
-            expansion = shannon_exp(component, atom)
-            print("Comp:",component)
-            print("Expansion",expansion)
+            count1 = 0
+            for sub_clause in clause.args:
+                if sub_clause.is_Atom:
+                    count1 += 1
+                else:
+                    count1 += count_models_from_ddnnf(sub_clause)
+            count *= count1
+    return count
 
-            f0, f1 = expansion.args
-            if reduction:
-                f0 = reduce(f0)
-                f1 = reduce(f1)
 
-            f0 = to_d_dnnf(f0)
-            f1 = to_d_dnnf(f1)
+def count_models_from_cnf(cnf_formula):
+    if cnf_formula.is_Atom:
+        if cnf_formula == f:
+            return 0
+        else:
+            return 1
 
-            result = And(result, Or(f0, f1))
-    return result
+    components = split_independent(cnf_formula)
+    return
 
 
 if __name__ == "__main__":
@@ -102,12 +66,23 @@ if __name__ == "__main__":
             ° apply shannon's expansion
         - substitute and count models
     """
-    #expr = (A >> B | C) & (C >> ~A) & (D | F)
-    expr = (A | B) & (C | D) & (F | D)
+    expr = (A >> B | C) & (C >> ~A)
+    #expr = (A | B) & (C | D) & (F | ~D)
+
     cnf = to_cnf(expr)
 
     ddnnf = to_d_dnnf(cnf, reduction=True)
     print(ddnnf)
-    print(ddnnf.__str__().replace("&","*").replace("|","+").replace("False","0").replace("True","1").replace("~","").replace("A","1").replace("B","1"))
+    print(replace(ddnnf))
+
+    st = perf_counter_ns()
+    print("Parsing replaced string:", parse_expr(replace(ddnnf)))
+    end = perf_counter_ns()
+    print("Time:", end-st)
+
+    st = perf_counter_ns()
+    print("Counting recursively:", count_models_from_ddnnf(ddnnf))
+    end = perf_counter_ns()
+    print("Time:", end-st)
 
 
