@@ -1,7 +1,7 @@
 from sympy import *
 
 
-f, t = symbols('False, True')
+f, t = symbols('⊥, ⊤')
 
 
 def split_independent(cnf_formula):
@@ -65,15 +65,12 @@ def reduce(cnf_formula):
 def to_d_dnnf(cnf_formula, reduction=True):
     components = split_independent(cnf_formula)
     result = And()
-    print("Components:", components)
     for component in components:
         if component.is_Atom or len(component.atoms() - {f, t}) <= 1:
             result = And(result, component)
         else:
             atom = most_frequent_atom(component)
             expansion = shannon_exp(component, atom)
-            print("Comp:",component)
-            print("Expansion",expansion)
 
             f0, f1 = expansion.args
             if reduction:
@@ -85,3 +82,19 @@ def to_d_dnnf(cnf_formula, reduction=True):
 
             result = And(result, Or(f0, f1))
     return result
+
+
+def replace(ddnnf):
+    str_ddnnf = ddnnf.__str__()
+
+    subst_dict = {'&':'*',
+                  '|':'+',
+                  '~':'',
+                  '⊥':'0'}
+    for atom in ddnnf.atoms() - {f}:
+        subst_dict[atom.__str__()] = '1'
+
+    for key, item in subst_dict.items():
+        str_ddnnf = str_ddnnf.replace(key, item)
+
+    return str_ddnnf

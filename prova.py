@@ -1,3 +1,4 @@
+import gc
 import itertools
 import operator
 from time import perf_counter_ns
@@ -11,50 +12,9 @@ from sympy import *
 import sympy
 from sympy.parsing.sympy_parser import split_symbols
 
-from formulas import *
-
-
-def replace(ddnnf):
-    str_ddnnf = ddnnf.__str__()
-    str_ddnnf = str_ddnnf.replace("&","*")
-    str_ddnnf = str_ddnnf.replace("|","+")
-    str_ddnnf = str_ddnnf.replace("~","")
-    str_ddnnf = str_ddnnf.replace(f.__str__(), "0")
-
-    for atom in ddnnf.atoms() - {f}:
-        str_ddnnf = str_ddnnf.replace(atom.__str__(), "1")
-
-    return str_ddnnf
-
-
-def count_models_from_ddnnf(ddnnf):
-    """WRONG because the ddnnf could start with a AND or with a OR?"""
-    count = 1
-    for clause in ddnnf.args:
-        if clause.is_Atom:
-            if clause == f:
-                count *= 0
-        else:
-            count1 = 0
-            for sub_clause in clause.args:
-                if sub_clause.is_Atom:
-                    count1 += 1
-                else:
-                    count1 += count_models_from_ddnnf(sub_clause)
-            count *= count1
-    return count
-
-
-def count_models_from_cnf(cnf_formula):
-    if cnf_formula.is_Atom:
-        if cnf_formula == f:
-            return 0
-        else:
-            return 1
-
-    components = split_independent(cnf_formula)
-    return
-
+from formulas import to_d_dnnf, replace
+from model_counting import *
+from utils import load
 
 if __name__ == "__main__":
     """
@@ -66,23 +26,40 @@ if __name__ == "__main__":
             ° apply shannon's expansion
         - substitute and count models
     """
-    expr = (A >> B | C) & (C >> ~A)
+    cnf = load('files/example_sympy_1.txt', 'sympy')
+    #cnf = parse_expr('(x1 | x2) & x3')
+    print(cnf)
+
+
+    #expr = (A >> B | C) & (C >> ~A)
     #expr = (A | B) & (C | D) & (F | ~D)
+    #expr = (A | B) >> C
+    #expr = ((~A | B) >> C) | ((~B >> A) >> C)
 
-    cnf = to_cnf(expr)
+    print("CNF formula:", cnf)
 
-    ddnnf = to_d_dnnf(cnf, reduction=True)
-    print(ddnnf)
-    print(replace(ddnnf))
+    ddnnf = to_d_dnnf(cnf, reduction=False)
+    print("d-DNNF formula:", ddnnf)
 
+    print("---------------------------")
+    print("First method")
+    gc.disable()
     st = perf_counter_ns()
-    print("Parsing replaced string:", parse_expr(replace(ddnnf)))
+    replaced = replace(ddnnf)
+    count1 = parse_expr(replaced)
     end = perf_counter_ns()
-    print("Time:", end-st)
+    gc.enable()
+    print("Replaced expression:", replaced)
+    print("Count:", count1)
+    print("Time:", end - st)
 
+    print("---------------------------")
+    print("Second method")
+    gc.disable()
     st = perf_counter_ns()
-    print("Counting recursively:", count_models_from_ddnnf(ddnnf))
+    count2 = count_models_from_ddnnf(ddnnf)
     end = perf_counter_ns()
-    print("Time:", end-st)
-
+    gc.enable()
+    print("Count:", count2)
+    print("Time:", end - st)
 
