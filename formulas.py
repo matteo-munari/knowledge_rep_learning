@@ -95,7 +95,6 @@ def replace(ddnnf):
         subst_dict[atom.__str__()] = '1'
 
     sorted_keys = sorted(subst_dict.keys(), reverse=True)
-    print((sorted_keys))
 
     for key in sorted_keys:
         str_ddnnf = str_ddnnf.replace(key, subst_dict[key])

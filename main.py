@@ -1,190 +1,87 @@
+import argparse
+import gc
 import itertools
 import operator
+import sys
+from time import perf_counter_ns
 
 from sympy.abc import *
 from sympy.core.symbol import Symbol
 from sympy import true, false
 from sympy.logic.inference import satisfiable
-from sympy.logic.boolalg import And
+from sympy.logic.boolalg import And, Or
 from sympy import *
 import sympy
 from sympy.parsing.sympy_parser import split_symbols
 
+from formulas import to_d_dnnf, replace, list_notation
+from model_counting import *
+from utils import load, save_tree
 
-def get_atoms(formula):
-    atoms = set()
-    for disjunct in formula:
-        atoms = atoms.union(disjunct.atoms())
-        atoms = atoms.difference([true, false])
-    return atoms
-
-
-def split_cnf_formula(formula): #can be made more efficient using graphs
-    ind_components = []
-    update = True
-    while formula:
-        atoms = set()
-        first = formula.pop()
-        component = [first]
-        atoms = atoms.union(get_atoms(first))
-
-        while update:
-            update = False
-
-            for f in formula:
-                f_atoms = get_atoms(f)
-                if atoms.intersection(f_atoms):
-                    atoms = atoms.union(f_atoms)
-                    formula.remove(f)
-                    component.append(f)
-                    update = True
-
-        ind_components.append(component)
-
-    return ind_components
-
-
-def substitute(formula, atom):
-    """
-    Substitute every occurence of atom with True and of ~atom with False
-
-    :param formula: disjunction of propositions
-    :param atom: an atom, can be in the form A or ~A
-    :return: the formula with the substitutions applied
-    """
-    f = []
-    for elem in formula:
-        if elem == atom:
-            f.append(true)
-        elif elem == ~atom:
-            f.append(false)
-        else:
-            f.append(elem)
-
-    return f
-
-
-def reduce(cnf_formula):
-    reduced_f = []
-    for conjunct in cnf_formula:
-        reduced_clause = []
-        for disjunct in conjunct:
-            if disjunct is not false:
-                if not isinstance(disjunct, list) or disjunct is true:
-                    if disjunct not in reduced_clause:
-                        reduced_clause.append(disjunct)
-                else:
-                    reduced_clause.append(reduce(disjunct))
-
-        reduced_f.append(reduced_clause) if reduced_clause else reduced_f.append([false])
-
-    return reduced_f
-
-
-def shannons_expansion(formula):
-
-    # find the atom with highest number of occurences
-    occurences = {}
-    for conjunct in formula:
-        conj_atoms = get_atoms(conjunct)
-        for atom in conj_atoms:
-            if atom not in occurences:
-                occurences[atom] = 1
-            else:
-                occurences[atom] += 1
-
-    # check if the formula contains only one propositional variable
-    if len(occurences) > 1:
-        most_frequent = max(occurences.items(), key=operator.itemgetter(1))[0]
-
-        f0 = [[~most_frequent]]
-        f1 = [[most_frequent]]
-
-        for conjunct in formula:
-            f0.append(substitute(conjunct, ~most_frequent))
-            f1.append(substitute(conjunct, most_frequent))
-
-        return [[make_d_dnnf(f0), make_d_dnnf(f1)]]
-
-    return formula
-
-
-def make_d_dnnf(cnf_formula):
-    components = split_cnf_formula(cnf_formula)
-
-    expanded_formula = [shannons_expansion(component) for component in components]
-
-    return [f for formulas in expanded_formula for f in formulas]
-
-
-def count_models(ddnnf_formula):
-    if not isinstance(ddnnf_formula, list):
-        return 0 if ddnnf_formula is false else 1
-
-    counts = 1
-    for conjunct in ddnnf_formula:
-        conj_count = 0
-        for disjunct in conjunct:
-            disj_count = count_models(disjunct)
-            conj_count += disj_count
-
-        counts *= conj_count
-
-    return counts
-
-
-def cnf_to_list(cnf_formula):
-    f = []
-    for clause in cnf_formula.args:
-        f_i = []
-        for atom in clause.args:
-            f_i.append(atom)
-        f.append(f_i)
-
-    return f
-
+from pysat.solvers import Solver
 
 if __name__ == "__main__":
-    at = ~A
-    #t = [at, true]
-    #print(get_atoms(t))
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--source', type=str, required=True)
+    parser.add_argument('--source-type', type=str, default='formula')
+    parser.add_argument('--no-reduction', action='store_true')
+    parser.add_argument('--save-tree', action='store_true')
+    parser.add_argument('--show-tree', action='store_true')
+    parser.add_argument('--output-path', type=str, default='output')
 
-    #expr = input()
+    args = parser.parse_args()
 
-    expr = (A >> B | C) & (C >> ~A)
-    cnf = to_cnf(expr)
+    if args.source_type == 'formula':
+        cnf = to_cnf(parse_expr(args.source))
+    else:
+        cnf = load(args.source, type=args.source_type)
 
-    print(cnf)
-    list_cnf = cnf_to_list(cnf)
-    print(list_cnf)
-    ddnnf = make_d_dnnf(list_cnf)
-    print(ddnnf)
-    mc = count_models(ddnnf)
-    print(mc)
+    print(f"CNF formula:\n {cnf}")
 
-    """expr = '(A | B) & ~C & A'
-    pexp = parse_expr(expr)
-    atoms = pexp.atoms()
-    print(pexp)"""
+    if args.no_reduction:
+        ddnnf = to_d_dnnf(cnf, reduction=False)
+    else:
+        ddnnf = to_d_dnnf(cnf, reduction=True)
+    print(f"d-DNNF formula:\n {ddnnf}")
 
+    print("---------------------------")
+    print("Ground Truth - Model Counting enumerating models")
+    pysat_cnf = list_notation(cnf)
+    s = Solver(bootstrap_with=pysat_cnf)
+    gt_count = 0
+    gc.disable()
+    st = perf_counter_ns()
+    for m in s.enum_models():
+        gt_count += 1
+    end = perf_counter_ns()
+    gc.enable()
+    print(f"N° models: {gt_count}")
+    print(f"Time: {(end - st)//1e3} ms")
 
-    """#formula = [[A, B], [C, D], [~D, F]] # COUNT = 12
-    formula = [[~A, B, C], [~C, ~A]] # COUNT = 5
-    #formula = [[~A, A]]
+    print("---------------------------")
+    print("Model counting via Knowledge Compilation")
+    print(f"Replaced expression: {replace(ddnnf)}")
+    gc.disable()
+    st = perf_counter_ns()
+    count2 = count_models_from_ddnnf(ddnnf)
+    end = perf_counter_ns()
+    gc.enable()
+    print(f"N° models: {count2}")
+    print(f"Time: {(end - st)//1e3} ms")
 
-    ddnnf = make_d_dnnf(formula)
+    """print("---------------------------")
+    print("Model counting parsing replaced d-DNNF")
+    gc.disable()
+    st = perf_counter_ns()
+    replaced = replace(ddnnf)
+    count1 = parse_expr(replaced)
+    end = perf_counter_ns()
+    gc.enable()
+    print("Replaced expression:", replaced)
+    print(f"N° models: {count1}")
+    print(f"Time: {(end - st)//1e3} ms")"""
 
-    print(ddnnf)
-    print("START REDUCTION")
-    #isatom = {true, false, A, B, C, D, F, ~A, ~B, ~C, ~D, ~F}
-    reduced = reduce(ddnnf)
-    print(reduced)
-
-    mc = count_models(reduced)
-    print(mc)
-
-    #print(srepr(expr))"""
-
-    #cnf = [[false, false, A, true, A], [[[C, false], [D]], D], [false]]
-    #print(reduce(cnf))"""
-
+    if args.show_tree:
+        save_tree(ddnnf, show=True, path=args.output_path)
+    elif args.save_tree:
+        save_tree(ddnnf, show=False, path=args.output_path)
