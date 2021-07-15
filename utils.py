@@ -1,8 +1,8 @@
 from sympy import And, Or, symbols, false, true, parse_expr, to_cnf
 
 
-def load(path, type='sympy'):
-    if type == 'sympy':
+def load(path, type='formula'):
+    if type == 'formula':
         with open(path) as f:
             formula = f.readline()
             return to_cnf(parse_expr(formula))

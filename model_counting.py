@@ -1,16 +1,23 @@
+from sympy import Or
+
 from formulas import t, f
 
 
 def count_models_from_ddnnf(ddnnf):
-    return count_models(ddnnf & t)
+    if isinstance(ddnnf, Or):
+        return count_models(ddnnf & t)
+    return count_models(ddnnf)
 
 
 def count_models(ddnnf):
+    if ddnnf is f:
+        return 0
+
     count = 1
     for clause in ddnnf.args:
         if clause.is_Atom or clause.is_Not:
-            if clause == f:
-                return count*0
+            if clause is f:
+                return 0  # False in conjunction causes the product to be zero
         else:
             count1 = 0
             for sub_clause in clause.args:

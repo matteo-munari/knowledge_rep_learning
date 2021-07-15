@@ -5,12 +5,12 @@ f, t = symbols('⊥, ⊤')
 
 
 def split_independent(cnf_formula):
+    if cnf_formula.is_Atom or cnf_formula.is_Not:
+        return [cnf_formula]
+
     atoms = cnf_formula.atoms() - {f, t}
     clauses = list(cnf_formula.args)
     components = []
-    "POP first atom, save all formulas that present it, then iteratively do the same for all new atoms inserted"
-    "When this first step stop in the first element of the list append the and of all clauses"
-    "Continue popping and checking until all atoms are checked"
     while atoms:
         atom = atoms.pop()
         to_check = {atom}
@@ -94,7 +94,47 @@ def replace(ddnnf):
     for atom in ddnnf.atoms() - {f}:
         subst_dict[atom.__str__()] = '1'
 
-    for key, item in subst_dict.items():
-        str_ddnnf = str_ddnnf.replace(key, item)
+    sorted_keys = sorted(subst_dict.keys(), reverse=True)
+    print((sorted_keys))
+
+    for key in sorted_keys:
+        str_ddnnf = str_ddnnf.replace(key, subst_dict[key])
 
     return str_ddnnf
+
+
+def list_notation(cnf):
+    if cnf == f:
+        return [[]]
+    if cnf == t:
+        return []
+
+    dict = {}
+    id = 1
+    formula = []
+    for clause in cnf.args:
+        if clause.is_Atom:
+            if clause not in dict:
+                dict[clause] = id
+                id += 1
+            formula.append([dict[clause]])
+        elif clause.is_Not:
+            if Not(clause) not in dict:
+                dict[Not(clause)] = id
+                id += 1
+            formula.append([-dict[Not(clause)]])
+        else:
+            list_clause = []
+            for element in clause.args:
+                if element.is_Atom:
+                    if element not in dict:
+                        dict[element] = id
+                        id += 1
+                    list_clause.append(dict[element])
+                else:
+                    if Not(element) not in dict:
+                        dict[Not(element)] = id
+                        id += 1
+                    list_clause.append(-dict[Not(element)])
+            formula.append(list_clause)
+    return formula
