@@ -2,8 +2,9 @@ import argparse
 import gc
 import itertools
 import operator
+import os
 import sys
-from time import perf_counter_ns
+from time import perf_counter_ns, time
 
 from sympy.abc import *
 from sympy.core.symbol import Symbol
@@ -35,6 +36,8 @@ if __name__ == "__main__":
         cnf = to_cnf(parse_expr(args.source))
     else:
         cnf = load(args.source, type=args.source_type)
+
+    #cnf = (A | ~B) & (B | ~A)
 
     print(f"CNF formula:\n {cnf}")
 
@@ -69,7 +72,7 @@ if __name__ == "__main__":
     print(f"N° models: {count2}")
     print(f"Time: {(end - st)//1e3} ms")
 
-    """print("---------------------------")
+    print("---------------------------")
     print("Model counting parsing replaced d-DNNF")
     gc.disable()
     st = perf_counter_ns()
@@ -79,9 +82,16 @@ if __name__ == "__main__":
     gc.enable()
     print("Replaced expression:", replaced)
     print(f"N° models: {count1}")
-    print(f"Time: {(end - st)//1e3} ms")"""
+    print(f"Time: {(end - st)//1e3} ms")
+
+    if args.source_type == 'formula':
+        filename = str(time())
+    else:
+        basename = os.path.split(args.source)[1]
+        filename = os.path.splitext(basename)[0]
+
 
     if args.show_tree:
-        save_tree(ddnnf, show=True, path=args.output_path)
+        save_tree(ddnnf, show=True, path=args.output_path, filename=filename)
     elif args.save_tree:
-        save_tree(ddnnf, show=False, path=args.output_path)
+        save_tree(ddnnf, show=False, path=args.output_path, filename=filename)

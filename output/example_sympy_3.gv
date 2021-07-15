@@ -1,0 +1,1244 @@
+graph {
+	node [shape=circle]
+	1 [label="∧" fillcolor=lightblue style=filled]
+	2 [label="∨" fillcolor=lightcoral style=filled]
+	1 -- 2
+	3 [label="∧" fillcolor=lightblue style=filled]
+	2 -- 3
+	4 [label=x10]
+	3 -- 4
+	5 [label=x11]
+	3 -- 5
+	6 [label="∧" fillcolor=lightblue style=filled]
+	2 -- 6
+	7 [label="¬" fillcolor=lightgreen style=filled]
+	6 -- 7
+	8 [label=x10]
+	7 -- 8
+	9 [label="∨" fillcolor=lightcoral style=filled]
+	6 -- 9
+	10 [label=x11]
+	9 -- 10
+	11 [label="⊤"]
+	9 -- 11
+	12 [label="∨" fillcolor=lightcoral style=filled]
+	1 -- 12
+	13 [label="∧" fillcolor=lightblue style=filled]
+	12 -- 13
+	14 [label=x8]
+	13 -- 14
+	15 [label="¬" fillcolor=lightgreen style=filled]
+	13 -- 15
+	16 [label=x9]
+	15 -- 16
+	17 [label="∧" fillcolor=lightblue style=filled]
+	12 -- 17
+	18 [label=x9]
+	17 -- 18
+	19 [label="∨" fillcolor=lightcoral style=filled]
+	17 -- 19
+	20 [label=x8]
+	19 -- 20
+	21 [label="⊤"]
+	19 -- 21
+	22 [label="∨" fillcolor=lightcoral style=filled]
+	1 -- 22
+	23 [label="∧" fillcolor=lightblue style=filled]
+	22 -- 23
+	24 [label="¬" fillcolor=lightgreen style=filled]
+	23 -- 24
+	25 [label=x7]
+	24 -- 25
+	26 [label="∨" fillcolor=lightcoral style=filled]
+	23 -- 26
+	27 [label="∧" fillcolor=lightblue style=filled]
+	26 -- 27
+	28 [label=x5]
+	27 -- 28
+	29 [label="∨" fillcolor=lightcoral style=filled]
+	27 -- 29
+	30 [label="∧" fillcolor=lightblue style=filled]
+	29 -- 30
+	31 [label=x6]
+	30 -- 31
+	32 [label="∨" fillcolor=lightcoral style=filled]
+	30 -- 32
+	33 [label="∧" fillcolor=lightblue style=filled]
+	32 -- 33
+	34 [label="¬" fillcolor=lightgreen style=filled]
+	33 -- 34
+	35 [label=x1]
+	34 -- 35
+	36 [label="∨" fillcolor=lightcoral style=filled]
+	33 -- 36
+	37 [label="∧" fillcolor=lightblue style=filled]
+	36 -- 37
+	38 [label="⊤"]
+	37 -- 38
+	39 [label="¬" fillcolor=lightgreen style=filled]
+	37 -- 39
+	40 [label=x2]
+	39 -- 40
+	41 [label="∨" fillcolor=lightcoral style=filled]
+	37 -- 41
+	42 [label="∧" fillcolor=lightblue style=filled]
+	41 -- 42
+	43 [label=x4]
+	42 -- 43
+	44 [label="¬" fillcolor=lightgreen style=filled]
+	42 -- 44
+	45 [label=x3]
+	44 -- 45
+	46 [label="∧" fillcolor=lightblue style=filled]
+	41 -- 46
+	47 [label=x3]
+	46 -- 47
+	48 [label="∨" fillcolor=lightcoral style=filled]
+	46 -- 48
+	49 [label=x4]
+	48 -- 49
+	50 [label="⊤"]
+	48 -- 50
+	51 [label="∧" fillcolor=lightblue style=filled]
+	36 -- 51
+	52 [label=x2]
+	51 -- 52
+	53 [label="⊤"]
+	51 -- 53
+	54 [label="∨" fillcolor=lightcoral style=filled]
+	51 -- 54
+	55 [label="∧" fillcolor=lightblue style=filled]
+	54 -- 55
+	56 [label=x3]
+	55 -- 56
+	57 [label="∨" fillcolor=lightcoral style=filled]
+	55 -- 57
+	58 [label=x4]
+	57 -- 58
+	59 [label="⊤"]
+	57 -- 59
+	60 [label="∧" fillcolor=lightblue style=filled]
+	54 -- 60
+	61 [label="¬" fillcolor=lightgreen style=filled]
+	60 -- 61
+	62 [label=x3]
+	61 -- 62
+	63 [label="∨" fillcolor=lightcoral style=filled]
+	60 -- 63
+	64 [label=x4]
+	63 -- 64
+	65 [label="⊤"]
+	63 -- 65
+	66 [label="∧" fillcolor=lightblue style=filled]
+	32 -- 66
+	67 [label=x1]
+	66 -- 67
+	68 [label="∨" fillcolor=lightcoral style=filled]
+	66 -- 68
+	69 [label="∧" fillcolor=lightblue style=filled]
+	68 -- 69
+	70 [label=x2]
+	69 -- 70
+	71 [label="⊤"]
+	69 -- 71
+	72 [label="∨" fillcolor=lightcoral style=filled]
+	69 -- 72
+	73 [label="∧" fillcolor=lightblue style=filled]
+	72 -- 73
+	74 [label=x3]
+	73 -- 74
+	75 [label="∨" fillcolor=lightcoral style=filled]
+	73 -- 75
+	76 [label=x4]
+	75 -- 76
+	77 [label="⊤"]
+	75 -- 77
+	78 [label="∧" fillcolor=lightblue style=filled]
+	72 -- 78
+	79 [label="¬" fillcolor=lightgreen style=filled]
+	78 -- 79
+	80 [label=x3]
+	79 -- 80
+	81 [label="∨" fillcolor=lightcoral style=filled]
+	78 -- 81
+	82 [label=x4]
+	81 -- 82
+	83 [label="⊤"]
+	81 -- 83
+	84 [label="∧" fillcolor=lightblue style=filled]
+	68 -- 84
+	85 [label="⊥"]
+	84 -- 85
+	86 [label="¬" fillcolor=lightgreen style=filled]
+	84 -- 86
+	87 [label=x2]
+	86 -- 87
+	88 [label="∨" fillcolor=lightcoral style=filled]
+	84 -- 88
+	89 [label="∧" fillcolor=lightblue style=filled]
+	88 -- 89
+	90 [label=x3]
+	89 -- 90
+	91 [label="∨" fillcolor=lightcoral style=filled]
+	89 -- 91
+	92 [label=x4]
+	91 -- 92
+	93 [label="⊤"]
+	91 -- 93
+	94 [label="∧" fillcolor=lightblue style=filled]
+	88 -- 94
+	95 [label="¬" fillcolor=lightgreen style=filled]
+	94 -- 95
+	96 [label=x3]
+	95 -- 96
+	97 [label="∨" fillcolor=lightcoral style=filled]
+	94 -- 97
+	98 [label=x4]
+	97 -- 98
+	99 [label="⊤"]
+	97 -- 99
+	100 [label="∧" fillcolor=lightblue style=filled]
+	29 -- 100
+	101 [label="¬" fillcolor=lightgreen style=filled]
+	100 -- 101
+	102 [label=x6]
+	101 -- 102
+	103 [label="∨" fillcolor=lightcoral style=filled]
+	100 -- 103
+	104 [label="∧" fillcolor=lightblue style=filled]
+	103 -- 104
+	105 [label=x1]
+	104 -- 105
+	106 [label="∨" fillcolor=lightcoral style=filled]
+	104 -- 106
+	107 [label="∧" fillcolor=lightblue style=filled]
+	106 -- 107
+	108 [label=x2]
+	107 -- 108
+	109 [label="⊤"]
+	107 -- 109
+	110 [label="∨" fillcolor=lightcoral style=filled]
+	107 -- 110
+	111 [label="∧" fillcolor=lightblue style=filled]
+	110 -- 111
+	112 [label=x3]
+	111 -- 112
+	113 [label="∨" fillcolor=lightcoral style=filled]
+	111 -- 113
+	114 [label=x4]
+	113 -- 114
+	115 [label="⊤"]
+	113 -- 115
+	116 [label="∧" fillcolor=lightblue style=filled]
+	110 -- 116
+	117 [label="¬" fillcolor=lightgreen style=filled]
+	116 -- 117
+	118 [label=x3]
+	117 -- 118
+	119 [label="∨" fillcolor=lightcoral style=filled]
+	116 -- 119
+	120 [label=x4]
+	119 -- 120
+	121 [label="⊤"]
+	119 -- 121
+	122 [label="∧" fillcolor=lightblue style=filled]
+	106 -- 122
+	123 [label="⊤"]
+	122 -- 123
+	124 [label="¬" fillcolor=lightgreen style=filled]
+	122 -- 124
+	125 [label=x2]
+	124 -- 125
+	126 [label="∨" fillcolor=lightcoral style=filled]
+	122 -- 126
+	127 [label="∧" fillcolor=lightblue style=filled]
+	126 -- 127
+	128 [label=x3]
+	127 -- 128
+	129 [label="∨" fillcolor=lightcoral style=filled]
+	127 -- 129
+	130 [label=x4]
+	129 -- 130
+	131 [label="⊤"]
+	129 -- 131
+	132 [label="∧" fillcolor=lightblue style=filled]
+	126 -- 132
+	133 [label="¬" fillcolor=lightgreen style=filled]
+	132 -- 133
+	134 [label=x3]
+	133 -- 134
+	135 [label="∨" fillcolor=lightcoral style=filled]
+	132 -- 135
+	136 [label=x4]
+	135 -- 136
+	137 [label="⊤"]
+	135 -- 137
+	138 [label="∧" fillcolor=lightblue style=filled]
+	103 -- 138
+	139 [label="¬" fillcolor=lightgreen style=filled]
+	138 -- 139
+	140 [label=x1]
+	139 -- 140
+	141 [label="∨" fillcolor=lightcoral style=filled]
+	138 -- 141
+	142 [label="∧" fillcolor=lightblue style=filled]
+	141 -- 142
+	143 [label=x2]
+	142 -- 143
+	144 [label="⊤"]
+	142 -- 144
+	145 [label="∨" fillcolor=lightcoral style=filled]
+	142 -- 145
+	146 [label="∧" fillcolor=lightblue style=filled]
+	145 -- 146
+	147 [label=x3]
+	146 -- 147
+	148 [label="∨" fillcolor=lightcoral style=filled]
+	146 -- 148
+	149 [label=x4]
+	148 -- 149
+	150 [label="⊤"]
+	148 -- 150
+	151 [label="∧" fillcolor=lightblue style=filled]
+	145 -- 151
+	152 [label="¬" fillcolor=lightgreen style=filled]
+	151 -- 152
+	153 [label=x3]
+	152 -- 153
+	154 [label="∨" fillcolor=lightcoral style=filled]
+	151 -- 154
+	155 [label=x4]
+	154 -- 155
+	156 [label="⊤"]
+	154 -- 156
+	157 [label="∧" fillcolor=lightblue style=filled]
+	141 -- 157
+	158 [label="⊤"]
+	157 -- 158
+	159 [label="¬" fillcolor=lightgreen style=filled]
+	157 -- 159
+	160 [label=x2]
+	159 -- 160
+	161 [label="∨" fillcolor=lightcoral style=filled]
+	157 -- 161
+	162 [label="∧" fillcolor=lightblue style=filled]
+	161 -- 162
+	163 [label=x3]
+	162 -- 163
+	164 [label="∨" fillcolor=lightcoral style=filled]
+	162 -- 164
+	165 [label=x4]
+	164 -- 165
+	166 [label="⊤"]
+	164 -- 166
+	167 [label="∧" fillcolor=lightblue style=filled]
+	161 -- 167
+	168 [label="¬" fillcolor=lightgreen style=filled]
+	167 -- 168
+	169 [label=x3]
+	168 -- 169
+	170 [label="∨" fillcolor=lightcoral style=filled]
+	167 -- 170
+	171 [label=x4]
+	170 -- 171
+	172 [label="⊤"]
+	170 -- 172
+	173 [label="∧" fillcolor=lightblue style=filled]
+	26 -- 173
+	174 [label="¬" fillcolor=lightgreen style=filled]
+	173 -- 174
+	175 [label=x5]
+	174 -- 175
+	176 [label="∨" fillcolor=lightcoral style=filled]
+	173 -- 176
+	177 [label="∧" fillcolor=lightblue style=filled]
+	176 -- 177
+	178 [label=x6]
+	177 -- 178
+	179 [label="∨" fillcolor=lightcoral style=filled]
+	177 -- 179
+	180 [label="∧" fillcolor=lightblue style=filled]
+	179 -- 180
+	181 [label=x1]
+	180 -- 181
+	182 [label="∨" fillcolor=lightcoral style=filled]
+	180 -- 182
+	183 [label="∧" fillcolor=lightblue style=filled]
+	182 -- 183
+	184 [label=x2]
+	183 -- 184
+	185 [label="⊤"]
+	183 -- 185
+	186 [label="∨" fillcolor=lightcoral style=filled]
+	183 -- 186
+	187 [label="∧" fillcolor=lightblue style=filled]
+	186 -- 187
+	188 [label=x3]
+	187 -- 188
+	189 [label="∨" fillcolor=lightcoral style=filled]
+	187 -- 189
+	190 [label=x4]
+	189 -- 190
+	191 [label="⊤"]
+	189 -- 191
+	192 [label="∧" fillcolor=lightblue style=filled]
+	186 -- 192
+	193 [label="¬" fillcolor=lightgreen style=filled]
+	192 -- 193
+	194 [label=x3]
+	193 -- 194
+	195 [label="∨" fillcolor=lightcoral style=filled]
+	192 -- 195
+	196 [label=x4]
+	195 -- 196
+	197 [label="⊤"]
+	195 -- 197
+	198 [label="∧" fillcolor=lightblue style=filled]
+	182 -- 198
+	199 [label="⊤"]
+	198 -- 199
+	200 [label="¬" fillcolor=lightgreen style=filled]
+	198 -- 200
+	201 [label=x2]
+	200 -- 201
+	202 [label="∨" fillcolor=lightcoral style=filled]
+	198 -- 202
+	203 [label="∧" fillcolor=lightblue style=filled]
+	202 -- 203
+	204 [label=x3]
+	203 -- 204
+	205 [label="∨" fillcolor=lightcoral style=filled]
+	203 -- 205
+	206 [label=x4]
+	205 -- 206
+	207 [label="⊤"]
+	205 -- 207
+	208 [label="∧" fillcolor=lightblue style=filled]
+	202 -- 208
+	209 [label="¬" fillcolor=lightgreen style=filled]
+	208 -- 209
+	210 [label=x3]
+	209 -- 210
+	211 [label="∨" fillcolor=lightcoral style=filled]
+	208 -- 211
+	212 [label=x4]
+	211 -- 212
+	213 [label="⊤"]
+	211 -- 213
+	214 [label="∧" fillcolor=lightblue style=filled]
+	179 -- 214
+	215 [label="¬" fillcolor=lightgreen style=filled]
+	214 -- 215
+	216 [label=x1]
+	215 -- 216
+	217 [label="∨" fillcolor=lightcoral style=filled]
+	214 -- 217
+	218 [label="∧" fillcolor=lightblue style=filled]
+	217 -- 218
+	219 [label=x2]
+	218 -- 219
+	220 [label="⊤"]
+	218 -- 220
+	221 [label="∨" fillcolor=lightcoral style=filled]
+	218 -- 221
+	222 [label="∧" fillcolor=lightblue style=filled]
+	221 -- 222
+	223 [label=x3]
+	222 -- 223
+	224 [label="∨" fillcolor=lightcoral style=filled]
+	222 -- 224
+	225 [label=x4]
+	224 -- 225
+	226 [label="⊤"]
+	224 -- 226
+	227 [label="∧" fillcolor=lightblue style=filled]
+	221 -- 227
+	228 [label="¬" fillcolor=lightgreen style=filled]
+	227 -- 228
+	229 [label=x3]
+	228 -- 229
+	230 [label="∨" fillcolor=lightcoral style=filled]
+	227 -- 230
+	231 [label=x4]
+	230 -- 231
+	232 [label="⊤"]
+	230 -- 232
+	233 [label="∧" fillcolor=lightblue style=filled]
+	217 -- 233
+	234 [label="⊤"]
+	233 -- 234
+	235 [label="¬" fillcolor=lightgreen style=filled]
+	233 -- 235
+	236 [label=x2]
+	235 -- 236
+	237 [label="∨" fillcolor=lightcoral style=filled]
+	233 -- 237
+	238 [label="∧" fillcolor=lightblue style=filled]
+	237 -- 238
+	239 [label=x3]
+	238 -- 239
+	240 [label="∨" fillcolor=lightcoral style=filled]
+	238 -- 240
+	241 [label=x4]
+	240 -- 241
+	242 [label="⊤"]
+	240 -- 242
+	243 [label="∧" fillcolor=lightblue style=filled]
+	237 -- 243
+	244 [label="¬" fillcolor=lightgreen style=filled]
+	243 -- 244
+	245 [label=x3]
+	244 -- 245
+	246 [label="∨" fillcolor=lightcoral style=filled]
+	243 -- 246
+	247 [label=x4]
+	246 -- 247
+	248 [label="⊤"]
+	246 -- 248
+	249 [label="∧" fillcolor=lightblue style=filled]
+	176 -- 249
+	250 [label="¬" fillcolor=lightgreen style=filled]
+	249 -- 250
+	251 [label=x6]
+	250 -- 251
+	252 [label="∨" fillcolor=lightcoral style=filled]
+	249 -- 252
+	253 [label="∧" fillcolor=lightblue style=filled]
+	252 -- 253
+	254 [label=x1]
+	253 -- 254
+	255 [label="∨" fillcolor=lightcoral style=filled]
+	253 -- 255
+	256 [label="∧" fillcolor=lightblue style=filled]
+	255 -- 256
+	257 [label=x2]
+	256 -- 257
+	258 [label="⊤"]
+	256 -- 258
+	259 [label="∨" fillcolor=lightcoral style=filled]
+	256 -- 259
+	260 [label="∧" fillcolor=lightblue style=filled]
+	259 -- 260
+	261 [label=x3]
+	260 -- 261
+	262 [label="∨" fillcolor=lightcoral style=filled]
+	260 -- 262
+	263 [label=x4]
+	262 -- 263
+	264 [label="⊤"]
+	262 -- 264
+	265 [label="∧" fillcolor=lightblue style=filled]
+	259 -- 265
+	266 [label="¬" fillcolor=lightgreen style=filled]
+	265 -- 266
+	267 [label=x3]
+	266 -- 267
+	268 [label="∨" fillcolor=lightcoral style=filled]
+	265 -- 268
+	269 [label=x4]
+	268 -- 269
+	270 [label="⊤"]
+	268 -- 270
+	271 [label="∧" fillcolor=lightblue style=filled]
+	255 -- 271
+	272 [label="⊤"]
+	271 -- 272
+	273 [label="¬" fillcolor=lightgreen style=filled]
+	271 -- 273
+	274 [label=x2]
+	273 -- 274
+	275 [label="∨" fillcolor=lightcoral style=filled]
+	271 -- 275
+	276 [label="∧" fillcolor=lightblue style=filled]
+	275 -- 276
+	277 [label=x3]
+	276 -- 277
+	278 [label="∨" fillcolor=lightcoral style=filled]
+	276 -- 278
+	279 [label=x4]
+	278 -- 279
+	280 [label="⊤"]
+	278 -- 280
+	281 [label="∧" fillcolor=lightblue style=filled]
+	275 -- 281
+	282 [label="¬" fillcolor=lightgreen style=filled]
+	281 -- 282
+	283 [label=x3]
+	282 -- 283
+	284 [label="∨" fillcolor=lightcoral style=filled]
+	281 -- 284
+	285 [label=x4]
+	284 -- 285
+	286 [label="⊤"]
+	284 -- 286
+	287 [label="∧" fillcolor=lightblue style=filled]
+	252 -- 287
+	288 [label="¬" fillcolor=lightgreen style=filled]
+	287 -- 288
+	289 [label=x1]
+	288 -- 289
+	290 [label="∨" fillcolor=lightcoral style=filled]
+	287 -- 290
+	291 [label="∧" fillcolor=lightblue style=filled]
+	290 -- 291
+	292 [label=x2]
+	291 -- 292
+	293 [label="⊤"]
+	291 -- 293
+	294 [label="∨" fillcolor=lightcoral style=filled]
+	291 -- 294
+	295 [label="∧" fillcolor=lightblue style=filled]
+	294 -- 295
+	296 [label=x3]
+	295 -- 296
+	297 [label="∨" fillcolor=lightcoral style=filled]
+	295 -- 297
+	298 [label=x4]
+	297 -- 298
+	299 [label="⊤"]
+	297 -- 299
+	300 [label="∧" fillcolor=lightblue style=filled]
+	294 -- 300
+	301 [label="¬" fillcolor=lightgreen style=filled]
+	300 -- 301
+	302 [label=x3]
+	301 -- 302
+	303 [label="∨" fillcolor=lightcoral style=filled]
+	300 -- 303
+	304 [label=x4]
+	303 -- 304
+	305 [label="⊤"]
+	303 -- 305
+	306 [label="∧" fillcolor=lightblue style=filled]
+	290 -- 306
+	307 [label="⊤"]
+	306 -- 307
+	308 [label="¬" fillcolor=lightgreen style=filled]
+	306 -- 308
+	309 [label=x2]
+	308 -- 309
+	310 [label="∨" fillcolor=lightcoral style=filled]
+	306 -- 310
+	311 [label="∧" fillcolor=lightblue style=filled]
+	310 -- 311
+	312 [label=x3]
+	311 -- 312
+	313 [label="∨" fillcolor=lightcoral style=filled]
+	311 -- 313
+	314 [label=x4]
+	313 -- 314
+	315 [label="⊤"]
+	313 -- 315
+	316 [label="∧" fillcolor=lightblue style=filled]
+	310 -- 316
+	317 [label="¬" fillcolor=lightgreen style=filled]
+	316 -- 317
+	318 [label=x3]
+	317 -- 318
+	319 [label="∨" fillcolor=lightcoral style=filled]
+	316 -- 319
+	320 [label=x4]
+	319 -- 320
+	321 [label="⊤"]
+	319 -- 321
+	322 [label="∧" fillcolor=lightblue style=filled]
+	22 -- 322
+	323 [label=x7]
+	322 -- 323
+	324 [label="∨" fillcolor=lightcoral style=filled]
+	322 -- 324
+	325 [label="∧" fillcolor=lightblue style=filled]
+	324 -- 325
+	326 [label=x5]
+	325 -- 326
+	327 [label="∨" fillcolor=lightcoral style=filled]
+	325 -- 327
+	328 [label="∧" fillcolor=lightblue style=filled]
+	327 -- 328
+	329 [label=x6]
+	328 -- 329
+	330 [label="∨" fillcolor=lightcoral style=filled]
+	328 -- 330
+	331 [label="∧" fillcolor=lightblue style=filled]
+	330 -- 331
+	332 [label=x1]
+	331 -- 332
+	333 [label="∨" fillcolor=lightcoral style=filled]
+	331 -- 333
+	334 [label="∧" fillcolor=lightblue style=filled]
+	333 -- 334
+	335 [label=x2]
+	334 -- 335
+	336 [label="⊤"]
+	334 -- 336
+	337 [label="∨" fillcolor=lightcoral style=filled]
+	334 -- 337
+	338 [label="∧" fillcolor=lightblue style=filled]
+	337 -- 338
+	339 [label=x3]
+	338 -- 339
+	340 [label="∨" fillcolor=lightcoral style=filled]
+	338 -- 340
+	341 [label=x4]
+	340 -- 341
+	342 [label="⊤"]
+	340 -- 342
+	343 [label="∧" fillcolor=lightblue style=filled]
+	337 -- 343
+	344 [label="¬" fillcolor=lightgreen style=filled]
+	343 -- 344
+	345 [label=x3]
+	344 -- 345
+	346 [label="∨" fillcolor=lightcoral style=filled]
+	343 -- 346
+	347 [label=x4]
+	346 -- 347
+	348 [label="⊤"]
+	346 -- 348
+	349 [label="∧" fillcolor=lightblue style=filled]
+	333 -- 349
+	350 [label="⊤"]
+	349 -- 350
+	351 [label="¬" fillcolor=lightgreen style=filled]
+	349 -- 351
+	352 [label=x2]
+	351 -- 352
+	353 [label="∨" fillcolor=lightcoral style=filled]
+	349 -- 353
+	354 [label="∧" fillcolor=lightblue style=filled]
+	353 -- 354
+	355 [label=x3]
+	354 -- 355
+	356 [label="∨" fillcolor=lightcoral style=filled]
+	354 -- 356
+	357 [label=x4]
+	356 -- 357
+	358 [label="⊤"]
+	356 -- 358
+	359 [label="∧" fillcolor=lightblue style=filled]
+	353 -- 359
+	360 [label="¬" fillcolor=lightgreen style=filled]
+	359 -- 360
+	361 [label=x3]
+	360 -- 361
+	362 [label="∨" fillcolor=lightcoral style=filled]
+	359 -- 362
+	363 [label=x4]
+	362 -- 363
+	364 [label="⊤"]
+	362 -- 364
+	365 [label="∧" fillcolor=lightblue style=filled]
+	330 -- 365
+	366 [label="¬" fillcolor=lightgreen style=filled]
+	365 -- 366
+	367 [label=x1]
+	366 -- 367
+	368 [label="∨" fillcolor=lightcoral style=filled]
+	365 -- 368
+	369 [label="∧" fillcolor=lightblue style=filled]
+	368 -- 369
+	370 [label=x2]
+	369 -- 370
+	371 [label="⊤"]
+	369 -- 371
+	372 [label="∨" fillcolor=lightcoral style=filled]
+	369 -- 372
+	373 [label="∧" fillcolor=lightblue style=filled]
+	372 -- 373
+	374 [label=x3]
+	373 -- 374
+	375 [label="∨" fillcolor=lightcoral style=filled]
+	373 -- 375
+	376 [label=x4]
+	375 -- 376
+	377 [label="⊤"]
+	375 -- 377
+	378 [label="∧" fillcolor=lightblue style=filled]
+	372 -- 378
+	379 [label="¬" fillcolor=lightgreen style=filled]
+	378 -- 379
+	380 [label=x3]
+	379 -- 380
+	381 [label="∨" fillcolor=lightcoral style=filled]
+	378 -- 381
+	382 [label=x4]
+	381 -- 382
+	383 [label="⊤"]
+	381 -- 383
+	384 [label="∧" fillcolor=lightblue style=filled]
+	368 -- 384
+	385 [label="⊤"]
+	384 -- 385
+	386 [label="¬" fillcolor=lightgreen style=filled]
+	384 -- 386
+	387 [label=x2]
+	386 -- 387
+	388 [label="∨" fillcolor=lightcoral style=filled]
+	384 -- 388
+	389 [label="∧" fillcolor=lightblue style=filled]
+	388 -- 389
+	390 [label=x3]
+	389 -- 390
+	391 [label="∨" fillcolor=lightcoral style=filled]
+	389 -- 391
+	392 [label=x4]
+	391 -- 392
+	393 [label="⊤"]
+	391 -- 393
+	394 [label="∧" fillcolor=lightblue style=filled]
+	388 -- 394
+	395 [label="¬" fillcolor=lightgreen style=filled]
+	394 -- 395
+	396 [label=x3]
+	395 -- 396
+	397 [label="∨" fillcolor=lightcoral style=filled]
+	394 -- 397
+	398 [label=x4]
+	397 -- 398
+	399 [label="⊤"]
+	397 -- 399
+	400 [label="∧" fillcolor=lightblue style=filled]
+	327 -- 400
+	401 [label="¬" fillcolor=lightgreen style=filled]
+	400 -- 401
+	402 [label=x6]
+	401 -- 402
+	403 [label="∨" fillcolor=lightcoral style=filled]
+	400 -- 403
+	404 [label="∧" fillcolor=lightblue style=filled]
+	403 -- 404
+	405 [label=x1]
+	404 -- 405
+	406 [label="∨" fillcolor=lightcoral style=filled]
+	404 -- 406
+	407 [label="∧" fillcolor=lightblue style=filled]
+	406 -- 407
+	408 [label=x2]
+	407 -- 408
+	409 [label="⊤"]
+	407 -- 409
+	410 [label="∨" fillcolor=lightcoral style=filled]
+	407 -- 410
+	411 [label="∧" fillcolor=lightblue style=filled]
+	410 -- 411
+	412 [label=x3]
+	411 -- 412
+	413 [label="∨" fillcolor=lightcoral style=filled]
+	411 -- 413
+	414 [label=x4]
+	413 -- 414
+	415 [label="⊤"]
+	413 -- 415
+	416 [label="∧" fillcolor=lightblue style=filled]
+	410 -- 416
+	417 [label="¬" fillcolor=lightgreen style=filled]
+	416 -- 417
+	418 [label=x3]
+	417 -- 418
+	419 [label="∨" fillcolor=lightcoral style=filled]
+	416 -- 419
+	420 [label=x4]
+	419 -- 420
+	421 [label="⊤"]
+	419 -- 421
+	422 [label="∧" fillcolor=lightblue style=filled]
+	406 -- 422
+	423 [label="⊤"]
+	422 -- 423
+	424 [label="¬" fillcolor=lightgreen style=filled]
+	422 -- 424
+	425 [label=x2]
+	424 -- 425
+	426 [label="∨" fillcolor=lightcoral style=filled]
+	422 -- 426
+	427 [label="∧" fillcolor=lightblue style=filled]
+	426 -- 427
+	428 [label=x3]
+	427 -- 428
+	429 [label="∨" fillcolor=lightcoral style=filled]
+	427 -- 429
+	430 [label=x4]
+	429 -- 430
+	431 [label="⊤"]
+	429 -- 431
+	432 [label="∧" fillcolor=lightblue style=filled]
+	426 -- 432
+	433 [label="¬" fillcolor=lightgreen style=filled]
+	432 -- 433
+	434 [label=x3]
+	433 -- 434
+	435 [label="∨" fillcolor=lightcoral style=filled]
+	432 -- 435
+	436 [label=x4]
+	435 -- 436
+	437 [label="⊤"]
+	435 -- 437
+	438 [label="∧" fillcolor=lightblue style=filled]
+	403 -- 438
+	439 [label="¬" fillcolor=lightgreen style=filled]
+	438 -- 439
+	440 [label=x1]
+	439 -- 440
+	441 [label="∨" fillcolor=lightcoral style=filled]
+	438 -- 441
+	442 [label="∧" fillcolor=lightblue style=filled]
+	441 -- 442
+	443 [label=x2]
+	442 -- 443
+	444 [label="⊤"]
+	442 -- 444
+	445 [label="∨" fillcolor=lightcoral style=filled]
+	442 -- 445
+	446 [label="∧" fillcolor=lightblue style=filled]
+	445 -- 446
+	447 [label=x3]
+	446 -- 447
+	448 [label="∨" fillcolor=lightcoral style=filled]
+	446 -- 448
+	449 [label=x4]
+	448 -- 449
+	450 [label="⊤"]
+	448 -- 450
+	451 [label="∧" fillcolor=lightblue style=filled]
+	445 -- 451
+	452 [label="¬" fillcolor=lightgreen style=filled]
+	451 -- 452
+	453 [label=x3]
+	452 -- 453
+	454 [label="∨" fillcolor=lightcoral style=filled]
+	451 -- 454
+	455 [label=x4]
+	454 -- 455
+	456 [label="⊤"]
+	454 -- 456
+	457 [label="∧" fillcolor=lightblue style=filled]
+	441 -- 457
+	458 [label="⊤"]
+	457 -- 458
+	459 [label="¬" fillcolor=lightgreen style=filled]
+	457 -- 459
+	460 [label=x2]
+	459 -- 460
+	461 [label="∨" fillcolor=lightcoral style=filled]
+	457 -- 461
+	462 [label="∧" fillcolor=lightblue style=filled]
+	461 -- 462
+	463 [label=x3]
+	462 -- 463
+	464 [label="∨" fillcolor=lightcoral style=filled]
+	462 -- 464
+	465 [label=x4]
+	464 -- 465
+	466 [label="⊤"]
+	464 -- 466
+	467 [label="∧" fillcolor=lightblue style=filled]
+	461 -- 467
+	468 [label="¬" fillcolor=lightgreen style=filled]
+	467 -- 468
+	469 [label=x3]
+	468 -- 469
+	470 [label="∨" fillcolor=lightcoral style=filled]
+	467 -- 470
+	471 [label=x4]
+	470 -- 471
+	472 [label="⊤"]
+	470 -- 472
+	473 [label="∧" fillcolor=lightblue style=filled]
+	324 -- 473
+	474 [label="¬" fillcolor=lightgreen style=filled]
+	473 -- 474
+	475 [label=x5]
+	474 -- 475
+	476 [label="∨" fillcolor=lightcoral style=filled]
+	473 -- 476
+	477 [label="∧" fillcolor=lightblue style=filled]
+	476 -- 477
+	478 [label=x6]
+	477 -- 478
+	479 [label="∨" fillcolor=lightcoral style=filled]
+	477 -- 479
+	480 [label="∧" fillcolor=lightblue style=filled]
+	479 -- 480
+	481 [label=x1]
+	480 -- 481
+	482 [label="∨" fillcolor=lightcoral style=filled]
+	480 -- 482
+	483 [label="∧" fillcolor=lightblue style=filled]
+	482 -- 483
+	484 [label=x2]
+	483 -- 484
+	485 [label="⊤"]
+	483 -- 485
+	486 [label="∨" fillcolor=lightcoral style=filled]
+	483 -- 486
+	487 [label="∧" fillcolor=lightblue style=filled]
+	486 -- 487
+	488 [label=x3]
+	487 -- 488
+	489 [label="∨" fillcolor=lightcoral style=filled]
+	487 -- 489
+	490 [label=x4]
+	489 -- 490
+	491 [label="⊤"]
+	489 -- 491
+	492 [label="∧" fillcolor=lightblue style=filled]
+	486 -- 492
+	493 [label="¬" fillcolor=lightgreen style=filled]
+	492 -- 493
+	494 [label=x3]
+	493 -- 494
+	495 [label="∨" fillcolor=lightcoral style=filled]
+	492 -- 495
+	496 [label=x4]
+	495 -- 496
+	497 [label="⊤"]
+	495 -- 497
+	498 [label="∧" fillcolor=lightblue style=filled]
+	482 -- 498
+	499 [label="⊤"]
+	498 -- 499
+	500 [label="¬" fillcolor=lightgreen style=filled]
+	498 -- 500
+	501 [label=x2]
+	500 -- 501
+	502 [label="∨" fillcolor=lightcoral style=filled]
+	498 -- 502
+	503 [label="∧" fillcolor=lightblue style=filled]
+	502 -- 503
+	504 [label=x3]
+	503 -- 504
+	505 [label="∨" fillcolor=lightcoral style=filled]
+	503 -- 505
+	506 [label=x4]
+	505 -- 506
+	507 [label="⊤"]
+	505 -- 507
+	508 [label="∧" fillcolor=lightblue style=filled]
+	502 -- 508
+	509 [label="¬" fillcolor=lightgreen style=filled]
+	508 -- 509
+	510 [label=x3]
+	509 -- 510
+	511 [label="∨" fillcolor=lightcoral style=filled]
+	508 -- 511
+	512 [label=x4]
+	511 -- 512
+	513 [label="⊤"]
+	511 -- 513
+	514 [label="∧" fillcolor=lightblue style=filled]
+	479 -- 514
+	515 [label="¬" fillcolor=lightgreen style=filled]
+	514 -- 515
+	516 [label=x1]
+	515 -- 516
+	517 [label="∨" fillcolor=lightcoral style=filled]
+	514 -- 517
+	518 [label="∧" fillcolor=lightblue style=filled]
+	517 -- 518
+	519 [label=x2]
+	518 -- 519
+	520 [label="⊤"]
+	518 -- 520
+	521 [label="∨" fillcolor=lightcoral style=filled]
+	518 -- 521
+	522 [label="∧" fillcolor=lightblue style=filled]
+	521 -- 522
+	523 [label=x3]
+	522 -- 523
+	524 [label="∨" fillcolor=lightcoral style=filled]
+	522 -- 524
+	525 [label=x4]
+	524 -- 525
+	526 [label="⊤"]
+	524 -- 526
+	527 [label="∧" fillcolor=lightblue style=filled]
+	521 -- 527
+	528 [label="¬" fillcolor=lightgreen style=filled]
+	527 -- 528
+	529 [label=x3]
+	528 -- 529
+	530 [label="∨" fillcolor=lightcoral style=filled]
+	527 -- 530
+	531 [label=x4]
+	530 -- 531
+	532 [label="⊤"]
+	530 -- 532
+	533 [label="∧" fillcolor=lightblue style=filled]
+	517 -- 533
+	534 [label="⊤"]
+	533 -- 534
+	535 [label="¬" fillcolor=lightgreen style=filled]
+	533 -- 535
+	536 [label=x2]
+	535 -- 536
+	537 [label="∨" fillcolor=lightcoral style=filled]
+	533 -- 537
+	538 [label="∧" fillcolor=lightblue style=filled]
+	537 -- 538
+	539 [label=x3]
+	538 -- 539
+	540 [label="∨" fillcolor=lightcoral style=filled]
+	538 -- 540
+	541 [label=x4]
+	540 -- 541
+	542 [label="⊤"]
+	540 -- 542
+	543 [label="∧" fillcolor=lightblue style=filled]
+	537 -- 543
+	544 [label="¬" fillcolor=lightgreen style=filled]
+	543 -- 544
+	545 [label=x3]
+	544 -- 545
+	546 [label="∨" fillcolor=lightcoral style=filled]
+	543 -- 546
+	547 [label=x4]
+	546 -- 547
+	548 [label="⊤"]
+	546 -- 548
+	549 [label="∧" fillcolor=lightblue style=filled]
+	476 -- 549
+	550 [label="¬" fillcolor=lightgreen style=filled]
+	549 -- 550
+	551 [label=x6]
+	550 -- 551
+	552 [label="∨" fillcolor=lightcoral style=filled]
+	549 -- 552
+	553 [label="∧" fillcolor=lightblue style=filled]
+	552 -- 553
+	554 [label=x1]
+	553 -- 554
+	555 [label="∨" fillcolor=lightcoral style=filled]
+	553 -- 555
+	556 [label="∧" fillcolor=lightblue style=filled]
+	555 -- 556
+	557 [label=x2]
+	556 -- 557
+	558 [label="⊤"]
+	556 -- 558
+	559 [label="∨" fillcolor=lightcoral style=filled]
+	556 -- 559
+	560 [label="∧" fillcolor=lightblue style=filled]
+	559 -- 560
+	561 [label=x3]
+	560 -- 561
+	562 [label="∨" fillcolor=lightcoral style=filled]
+	560 -- 562
+	563 [label=x4]
+	562 -- 563
+	564 [label="⊤"]
+	562 -- 564
+	565 [label="∧" fillcolor=lightblue style=filled]
+	559 -- 565
+	566 [label="¬" fillcolor=lightgreen style=filled]
+	565 -- 566
+	567 [label=x3]
+	566 -- 567
+	568 [label="∨" fillcolor=lightcoral style=filled]
+	565 -- 568
+	569 [label=x4]
+	568 -- 569
+	570 [label="⊤"]
+	568 -- 570
+	571 [label="∧" fillcolor=lightblue style=filled]
+	555 -- 571
+	572 [label="⊤"]
+	571 -- 572
+	573 [label="¬" fillcolor=lightgreen style=filled]
+	571 -- 573
+	574 [label=x2]
+	573 -- 574
+	575 [label="∨" fillcolor=lightcoral style=filled]
+	571 -- 575
+	576 [label="∧" fillcolor=lightblue style=filled]
+	575 -- 576
+	577 [label=x3]
+	576 -- 577
+	578 [label="∨" fillcolor=lightcoral style=filled]
+	576 -- 578
+	579 [label=x4]
+	578 -- 579
+	580 [label="⊤"]
+	578 -- 580
+	581 [label="∧" fillcolor=lightblue style=filled]
+	575 -- 581
+	582 [label="¬" fillcolor=lightgreen style=filled]
+	581 -- 582
+	583 [label=x3]
+	582 -- 583
+	584 [label="∨" fillcolor=lightcoral style=filled]
+	581 -- 584
+	585 [label=x4]
+	584 -- 585
+	586 [label="⊤"]
+	584 -- 586
+	587 [label="∧" fillcolor=lightblue style=filled]
+	552 -- 587
+	588 [label="¬" fillcolor=lightgreen style=filled]
+	587 -- 588
+	589 [label=x1]
+	588 -- 589
+	590 [label="∨" fillcolor=lightcoral style=filled]
+	587 -- 590
+	591 [label="∧" fillcolor=lightblue style=filled]
+	590 -- 591
+	592 [label=x2]
+	591 -- 592
+	593 [label="⊤"]
+	591 -- 593
+	594 [label="∨" fillcolor=lightcoral style=filled]
+	591 -- 594
+	595 [label="∧" fillcolor=lightblue style=filled]
+	594 -- 595
+	596 [label=x3]
+	595 -- 596
+	597 [label="∨" fillcolor=lightcoral style=filled]
+	595 -- 597
+	598 [label=x4]
+	597 -- 598
+	599 [label="⊤"]
+	597 -- 599
+	600 [label="∧" fillcolor=lightblue style=filled]
+	594 -- 600
+	601 [label="¬" fillcolor=lightgreen style=filled]
+	600 -- 601
+	602 [label=x3]
+	601 -- 602
+	603 [label="∨" fillcolor=lightcoral style=filled]
+	600 -- 603
+	604 [label=x4]
+	603 -- 604
+	605 [label="⊤"]
+	603 -- 605
+	606 [label="∧" fillcolor=lightblue style=filled]
+	590 -- 606
+	607 [label="⊤"]
+	606 -- 607
+	608 [label="¬" fillcolor=lightgreen style=filled]
+	606 -- 608
+	609 [label=x2]
+	608 -- 609
+	610 [label="∨" fillcolor=lightcoral style=filled]
+	606 -- 610
+	611 [label="∧" fillcolor=lightblue style=filled]
+	610 -- 611
+	612 [label=x3]
+	611 -- 612
+	613 [label="∨" fillcolor=lightcoral style=filled]
+	611 -- 613
+	614 [label=x4]
+	613 -- 614
+	615 [label="⊤"]
+	613 -- 615
+	616 [label="∧" fillcolor=lightblue style=filled]
+	610 -- 616
+	617 [label="¬" fillcolor=lightgreen style=filled]
+	616 -- 617
+	618 [label=x3]
+	617 -- 618
+	619 [label="∨" fillcolor=lightcoral style=filled]
+	616 -- 619
+	620 [label=x4]
+	619 -- 620
+	621 [label="⊤"]
+	619 -- 621
+}

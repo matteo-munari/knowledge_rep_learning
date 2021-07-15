@@ -43,7 +43,7 @@ def most_frequent_atom(cnf_formula):
         if atom != f and atom != t and occurences > count:
             most_frequent = atom
             count = occurences
-    return most_frequent
+    return most_frequent, count
 
 
 def shannon_exp(cnf_formula, atom):
@@ -66,10 +66,11 @@ def to_d_dnnf(cnf_formula, reduction=True):
     components = split_independent(cnf_formula)
     result = And()
     for component in components:
-        if component.is_Atom or len(component.atoms() - {f, t}) <= 1:
+        atom, count = most_frequent_atom(component)
+        if count < 2 and (component.is_Atom or len(component.atoms() - {f, t}) <= 1):
             result = And(result, component)
         else:
-            atom = most_frequent_atom(component)
+            #atom, _ = most_frequent_atom(component)
             expansion = shannon_exp(component, atom)
 
             f0, f1 = expansion.args

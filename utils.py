@@ -30,12 +30,12 @@ def load(path, type='sympy'):
     raise Exception("Type not supported")
 
 
-def save_tree(ddnnf, show=False, path='output'):
-    graph = graphviz.Graph(format='png', node_attr={'shape':'circle'})
+def save_tree(ddnnf, show=False, path='output', filename='graph'):
+    graph = graphviz.Graph(format='svg', node_attr={'shape':'circle'})
 
     add_to_graph(graph, 0, 1, ddnnf)
 
-    graph.render(path+'/graph.gv', view=show)
+    graph.render(path+'/'+filename+'.gv', view=show)
 
 
 def add_to_graph(g, root, new_id, formula):
