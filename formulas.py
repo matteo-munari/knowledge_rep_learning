@@ -1,11 +1,17 @@
 from sympy import *
 
-
 f, t = symbols('⊥, ⊤')
+
+def count_prop_variables(str_formula):
+    symbols = {'&', '|', '>', '<', '(', ')', 'True', 'False', '~'}
+    for symb in symbols:
+        str_formula = str_formula.replace(symb, ' ')
+    symbols = str_formula.split()
+    return len(set(symbols))
 
 
 def split_independent(cnf_formula):
-    if cnf_formula.is_Atom or cnf_formula.is_Not:
+    if cnf_formula.is_Atom or cnf_formula.is_Not or isinstance(cnf_formula, Or):
         return [cnf_formula]
 
     atoms = cnf_formula.atoms() - {f, t}
@@ -112,29 +118,44 @@ def list_notation(cnf):
     dict = {}
     id = 1
     formula = []
-    for clause in cnf.args:
-        if clause.is_Atom:
-            if clause not in dict:
-                dict[clause] = id
-                id += 1
-            formula.append([dict[clause]])
-        elif clause.is_Not:
-            if Not(clause) not in dict:
-                dict[Not(clause)] = id
-                id += 1
-            formula.append([-dict[Not(clause)]])
-        else:
-            list_clause = []
-            for element in clause.args:
-                if element.is_Atom:
-                    if element not in dict:
-                        dict[element] = id
-                        id += 1
-                    list_clause.append(dict[element])
-                else:
-                    if Not(element) not in dict:
-                        dict[Not(element)] = id
-                        id += 1
-                    list_clause.append(-dict[Not(element)])
-            formula.append(list_clause)
+    if isinstance(cnf, Or):
+        list_clause = []
+        for element in cnf.args:
+            if element.is_Atom:
+                if element not in dict:
+                    dict[element] = id
+                    id += 1
+                list_clause.append(dict[element])
+            else:
+                if Not(element) not in dict:
+                    dict[Not(element)] = id
+                    id += 1
+                list_clause.append(-dict[Not(element)])
+        formula.append(list_clause)
+    else:
+        for clause in cnf.args:
+            if clause.is_Atom:
+                if clause not in dict:
+                    dict[clause] = id
+                    id += 1
+                formula.append([dict[clause]])
+            elif clause.is_Not:
+                if Not(clause) not in dict:
+                    dict[Not(clause)] = id
+                    id += 1
+                formula.append([-dict[Not(clause)]])
+            else:
+                list_clause = []
+                for element in clause.args:
+                    if element.is_Atom:
+                        if element not in dict:
+                            dict[element] = id
+                            id += 1
+                        list_clause.append(dict[element])
+                    else:
+                        if Not(element) not in dict:
+                            dict[Not(element)] = id
+                            id += 1
+                        list_clause.append(-dict[Not(element)])
+                formula.append(list_clause)
     return formula
