@@ -7,7 +7,7 @@ from sympy import *
 from sympy.abc import *
 from sympy.logic.boolalg import conjuncts
 
-from formulas import to_d_dnnf, replace, list_notation, count_prop_variables
+from formulas import to_d_dnnf, replace, list_notation, count_prop_variables, split_independent
 from model_counting import *
 from utils import load, save_tree
 
@@ -42,6 +42,7 @@ if __name__ == "__main__":
     if original_formula:
         print(f"Original formula:\n  {original_formula}")
     print(f"Reduced CNF formula:\n  {cnf}")
+    print(f"Split independent: {split_independent(cnf)}")
     n_var_in_cnf = len(cnf.atoms() - {false, true, f, t})
     ignored_vars = n_variables - n_var_in_cnf
     print("Variables")
@@ -56,6 +57,7 @@ if __name__ == "__main__":
     print("---------------------------")
     print("Ground Truth - Model Counting enumerating models")
     pysat_cnf = list_notation(cnf)
+    print(pysat_cnf)
     s = Solver(bootstrap_with=pysat_cnf)
     gt_count = 0
     gc.disable()
@@ -73,12 +75,13 @@ if __name__ == "__main__":
     print("Model counting via Knowledge Compilation")
     gc.disable()
     st = perf_counter_ns()
-    count2 = count_models_from_ddnnf(ddnnf)
+    #count = count_models_from_ddnnf(ddnnf)
+    count = count_models(ddnnf)
     end = perf_counter_ns()
     gc.enable()
-    print(f"N° of models of CNF formula: {count2}")
+    print(f"N° of models of CNF formula: {count}")
     print(f"N° of ignored variables: {ignored_vars}")
-    print(f"Total N° of models: {count2} * 2^({ignored_vars}) = {count2 * 2**ignored_vars}")
+    print(f"Total N° of models: {count} * 2^({ignored_vars}) = {count * 2**ignored_vars}")
     print(f"Time: {(end - st)//1e3} ms")
 
     """print("---------------------------")

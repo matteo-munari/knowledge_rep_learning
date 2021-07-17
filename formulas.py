@@ -1,9 +1,11 @@
 from sympy import *
+from sympy.logic.boolalg import conjuncts
 
 f, t = symbols('⊥, ⊤')
 
+
 def count_prop_variables(str_formula):
-    symbols = {'&', '|', '>', '<', '(', ')', 'True', 'False', '~'}
+    symbols = {'&', '|', '>', '<', '(', ')', 'True', 'False', '~', 'false', 'true'}
     for symb in symbols:
         str_formula = str_formula.replace(symb, ' ')
     symbols = str_formula.split()
@@ -11,11 +13,9 @@ def count_prop_variables(str_formula):
 
 
 def split_independent(cnf_formula):
-    if cnf_formula.is_Atom or cnf_formula.is_Not or isinstance(cnf_formula, Or):
-        return [cnf_formula]
-
-    atoms = cnf_formula.atoms() - {f, t}
-    clauses = list(cnf_formula.args)
+    atoms = cnf_formula.atoms() - {f, t, true, false}
+    print(atoms)
+    clauses = conjuncts(cnf_formula)
     components = []
     while atoms:
         atom = atoms.pop()
@@ -76,7 +76,6 @@ def to_d_dnnf(cnf_formula, reduction=True):
         if count < 2 and (component.is_Atom or len(component.atoms() - {f, t}) <= 1):
             result = And(result, component)
         else:
-            #atom, _ = most_frequent_atom(component)
             expansion = shannon_exp(component, atom)
 
             f0, f1 = expansion.args
@@ -94,10 +93,10 @@ def to_d_dnnf(cnf_formula, reduction=True):
 def replace(ddnnf):
     str_ddnnf = ddnnf.__str__()
 
-    subst_dict = {'&':'*',
-                  '|':'+',
-                  '~':'',
-                  '⊥':'0'}
+    subst_dict = {'&': '*',
+                  '|': '+',
+                  '~': '',
+                  '⊥': '0'}
     for atom in ddnnf.atoms() - {f}:
         subst_dict[atom.__str__()] = '1'
 
@@ -110,15 +109,42 @@ def replace(ddnnf):
 
 
 def list_notation(cnf):
-    if cnf == f:
+    if cnf == f or cnf == false:
         return [[]]
-    if cnf == t:
+    if cnf == t or cnf == true:
         return []
 
     dict = {}
     id = 1
     formula = []
-    if isinstance(cnf, Or):
+
+    for clause in conjuncts(cnf):
+        if clause.is_Atom:
+            if clause not in dict:
+                dict[clause] = id
+                id += 1
+            formula.append([dict[clause]])
+        elif clause.is_Not:
+            if Not(clause) not in dict:
+                dict[Not(clause)] = id
+                id += 1
+            formula.append([-dict[Not(clause)]])
+        else:
+            list_clause = []
+            for element in clause.args:
+                if element.is_Atom:
+                    if element not in dict:
+                        dict[element] = id
+                        id += 1
+                    list_clause.append(dict[element])
+                else:
+                    if Not(element) not in dict:
+                        dict[Not(element)] = id
+                        id += 1
+                    list_clause.append(-dict[Not(element)])
+            formula.append(list_clause)
+
+    """if isinstance(cnf, Or):
         list_clause = []
         for element in cnf.args:
             if element.is_Atom:
@@ -157,5 +183,5 @@ def list_notation(cnf):
                             dict[Not(element)] = id
                             id += 1
                         list_clause.append(-dict[Not(element)])
-                formula.append(list_clause)
+                formula.append(list_clause)"""
     return formula
