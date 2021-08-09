@@ -1,0 +1,22 @@
+graph {
+	node [shape=circle]
+	1 [label="∨" fillcolor=lightcoral style=filled]
+	2 [label="∧" fillcolor=lightblue style=filled]
+	1 -- 2
+	3 [label=A]
+	2 -- 3
+	4 [label="¬" fillcolor=lightgreen style=filled]
+	2 -- 4
+	5 [label=B]
+	4 -- 5
+	6 [label="∧" fillcolor=lightblue style=filled]
+	1 -- 6
+	7 [label=B]
+	6 -- 7
+	8 [label="∨" fillcolor=lightcoral style=filled]
+	6 -- 8
+	9 [label=A]
+	8 -- 9
+	10 [label="⊤"]
+	8 -- 10
+}

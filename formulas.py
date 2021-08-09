@@ -14,7 +14,7 @@ def count_prop_variables(str_formula):
 
 def split_independent(cnf_formula):
     atoms = cnf_formula.atoms() - {f, t, true, false}
-    print(atoms)
+
     clauses = conjuncts(cnf_formula)
     components = []
     while atoms:
