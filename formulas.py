@@ -144,44 +144,4 @@ def list_notation(cnf):
                     list_clause.append(-dict[Not(element)])
             formula.append(list_clause)
 
-    """if isinstance(cnf, Or):
-        list_clause = []
-        for element in cnf.args:
-            if element.is_Atom:
-                if element not in dict:
-                    dict[element] = id
-                    id += 1
-                list_clause.append(dict[element])
-            else:
-                if Not(element) not in dict:
-                    dict[Not(element)] = id
-                    id += 1
-                list_clause.append(-dict[Not(element)])
-        formula.append(list_clause)
-    else:
-        for clause in cnf.args:
-            if clause.is_Atom:
-                if clause not in dict:
-                    dict[clause] = id
-                    id += 1
-                formula.append([dict[clause]])
-            elif clause.is_Not:
-                if Not(clause) not in dict:
-                    dict[Not(clause)] = id
-                    id += 1
-                formula.append([-dict[Not(clause)]])
-            else:
-                list_clause = []
-                for element in clause.args:
-                    if element.is_Atom:
-                        if element not in dict:
-                            dict[element] = id
-                            id += 1
-                        list_clause.append(dict[element])
-                    else:
-                        if Not(element) not in dict:
-                            dict[Not(element)] = id
-                            id += 1
-                        list_clause.append(-dict[Not(element)])
-                formula.append(list_clause)"""
     return formula

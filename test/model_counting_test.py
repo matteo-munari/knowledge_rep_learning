@@ -17,7 +17,9 @@ class TestModelCounting(unittest.TestCase):
           'test_05.txt',
           'test_06.txt',
           'test_07.txt',
-          'test_08.txt')
+          'test_08.txt',
+          'test_09.txt',
+          'test_10.txt')
 
     def test_model_counting(self, input_file):
         cnf, _, n_variables = load('../test_files/'+input_file)
@@ -26,7 +28,7 @@ class TestModelCounting(unittest.TestCase):
 
         s = Solver(bootstrap_with=list_notation(cnf))
         gt_count = 0
-        for m in s.enum_models():
+        for _ in s.enum_models():
             gt_count += 1
 
         ddnnf = to_d_dnnf(cnf, reduction=True)
