@@ -1,3 +1,3 @@
-# knowledge_rep_learning
+# Model counting via knowledge compilation
 
-# Copiright 2021 Munari Matteo
+Copyright 2021 by Munari Matteo
