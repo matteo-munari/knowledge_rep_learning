@@ -1,3 +1,5 @@
+#Copyright 2021 by Matteo Munari
+
 from sympy import *
 from sympy.logic.boolalg import conjuncts
 

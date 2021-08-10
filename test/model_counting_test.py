@@ -1,3 +1,5 @@
+#Copyright 2021 by Matteo Munari
+
 import unittest
 from ddt import ddt, data
 from pysat.solvers import Solver

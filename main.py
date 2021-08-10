@@ -1,3 +1,5 @@
+#Copyright 2021 by Matteo Munari
+
 import argparse
 import gc
 import os

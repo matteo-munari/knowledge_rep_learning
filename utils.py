@@ -1,3 +1,5 @@
+#Copyright 2021 by Matteo Munari
+
 from sympy import And, Or, symbols, false, true, parse_expr, to_cnf, Not
 import graphviz
 
