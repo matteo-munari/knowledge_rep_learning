@@ -41,13 +41,9 @@ if __name__ == "__main__":
     n_var_in_cnf = len(cnf.atoms() - {false, true, f, t})
     ignored_vars = n_variables - n_var_in_cnf
     print("Variables")
-    print(f"  Total:{n_variables}\n  In reduced CFN:{n_var_in_cnf}\n  Ignored:{ignored_vars}")
+    print(f"  Total:{n_variables}\n  In reduced CNF:{n_var_in_cnf}\n  Ignored:{ignored_vars}")
 
-    if args.no_reduction:
-        ddnnf = to_d_dnnf(cnf, reduction=False)
-    else:
-        ddnnf = to_d_dnnf(cnf, reduction=True)
-    print(f"d-DNNF formula:\n  {ddnnf}")
+
 
     print("---------------------------")
     print("Ground Truth - Model Counting enumerating models")
@@ -63,20 +59,26 @@ if __name__ == "__main__":
     print(f"N° of models of CNF formula: {gt_count}")
     print(f"N° of ignored variables: {ignored_vars}")
     print(f"Total N° of models: {gt_count} * 2^({ignored_vars}) = {gt_count * 2 ** ignored_vars}")
-    print(f"Time: {(end - st)//1e3} ms")
+    print(f"Time: {(end - st)//1e6} ms")
 
     print("---------------------------")
     print("Model counting via Knowledge Compilation")
     gc.disable()
     st = perf_counter_ns()
 
+    if args.no_reduction:
+        ddnnf = to_d_dnnf(cnf, reduction=False)
+    else:
+        ddnnf = to_d_dnnf(cnf, reduction=True)
+
     count = count_models(ddnnf)
     end = perf_counter_ns()
     gc.enable()
+    print(f"d-DNNF formula:\n  {ddnnf}")
     print(f"N° of models of CNF formula: {count}")
     print(f"N° of ignored variables: {ignored_vars}")
     print(f"Total N° of models: {count} * 2^({ignored_vars}) = {count * 2**ignored_vars}")
-    print(f"Time: {(end - st)//1e3} ms")
+    print(f"Time: {(end - st)//1e6} ms")
 
     if not args.source:
         filename = str(time())
